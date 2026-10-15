@@ -181,7 +181,6 @@ body.is-locked { overflow: hidden; }
 .env__letter {
   left: 6%; right: 6%; top: 8%; height: 84%; z-index: 1;
   background: var(--parchment); border-radius: 6px; padding: 14% 10%;
-  transition: transform .9s cubic-bezier(.5, 0, .2, 1) .45s;
 }
 .env__letter-line { display: block; position: static !important; height: 3px; margin: 10px 0; border-radius: 3px; background: rgba(43, 33, 24, .2); }
 .env__letter-line.short { width: 55%; }
@@ -214,7 +213,14 @@ body.is-locked { overflow: hidden; }
 .env.is-open { animation: none; }
 .env.is-open .env__seal { transform: translate(-50%, -20%) scale(.6) rotate(25deg); opacity: 0; }
 .env.is-open .env__flap { transform: rotateX(180deg); z-index: 0; }
-.env.is-open .env__letter { transform: translateY(-70%); }
+.env.is-open .env__letter { animation: pullout 1s cubic-bezier(.5, 0, .2, 1) .4s forwards; }
+/* Surat ditarik keluar penuh dulu, baru maju ke depan amplop */
+@keyframes pullout {
+  0%   { transform: translateY(0); z-index: 1; }
+  55%  { transform: translateY(-105%); z-index: 1; }
+  56%  { transform: translateY(-105%); z-index: 5; }
+  100% { transform: translateY(-25%) scale(1.12); z-index: 5; box-shadow: 0 25px 50px rgba(0, 0, 0, .55); }
+}
 .envelope:has(.env.is-open) :is(.envelope__to, .envelope__guest, .envelope__cta) { opacity: 0; transform: translateY(-10px); transition: opacity .4s ease, transform .4s ease; animation: none; }
 
 /* ---------- Isi undangan ---------- */
