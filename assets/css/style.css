@@ -179,7 +179,7 @@ body.is-locked { overflow: hidden; }
 .env > span { position: absolute; display: block; }
 .env__back { inset: 0; background: #1a1d3a; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line-gold); }
 .env__letter {
-  left: 6%; right: 6%; top: 8%; height: 84%;
+  left: 6%; right: 6%; top: 8%; height: 84%; z-index: 1;
   background: var(--parchment); border-radius: 6px; padding: 14% 10%;
   transition: transform .9s cubic-bezier(.5, 0, .2, 1) .45s;
 }
@@ -215,6 +215,7 @@ body.is-locked { overflow: hidden; }
 .env.is-open .env__seal { transform: translate(-50%, -20%) scale(.6) rotate(25deg); opacity: 0; }
 .env.is-open .env__flap { transform: rotateX(180deg); z-index: 0; }
 .env.is-open .env__letter { transform: translateY(-70%); }
+.envelope:has(.env.is-open) :is(.envelope__to, .envelope__guest, .envelope__cta) { opacity: 0; transform: translateY(-10px); transition: opacity .4s ease, transform .4s ease; animation: none; }
 
 /* ---------- Isi undangan ---------- */
 .letter {
